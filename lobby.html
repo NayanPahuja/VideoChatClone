@@ -7,11 +7,19 @@
     <link rel="stylesheet" href="lobby.css">
 </head>
 <body>
-
-    <form action="" id="join-form">
-    <input type="text" name="invite_link" id="" required>
-    <input type="submit" value="Join-Room!">
-</form>
+    <main id="lobby-container">
+        <div id="form-container">
+        <div id="formHeader">
+            <p>Create or join a room!</p>
+        </div>
+        <div id="contentWrapper">
+            <form action="" id="join-form">
+                <input type="text" name="invite_link" id="" required>
+                <input type="submit" value="Join-Room!">
+            </form>
+        </div>
+        </div>
+        </main>
 </body>
 <script>
     let form = document.getElementById('join-form')
