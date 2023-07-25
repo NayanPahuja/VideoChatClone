@@ -108,7 +108,7 @@ let createPeerConnection = async(MemberId) => {
      // Event listener to handle ICE candidates (used for NAT traversal).
      peerConnection.onicecandidate = async (event) => {
         if(event.candidate){
-            client.sendMessageToPeer({text:JSON.stringify({'type':'candidate', 'candidate':event.candidate})}, MemberId)
+            await client.sendMessageToPeer({text:JSON.stringify({'type':'candidate', 'candidate':event.candidate})}, MemberId)
         }
     }
 }
