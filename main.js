@@ -59,10 +59,10 @@ let handleMessageFromPeer = async (message, MemberId) => {
 
     message = JSON.parse(message.text)
     if(message.type === 'offer'){
-        createAnswer(MemberId,message.offer)
+        await createAnswer(MemberId,message.offer)
     }
     if(message.type === 'answer'){
-        addAnswer(message.answer)
+        await addAnswer(message.answer)
 
     }
     if(message.type === 'candidate'){
