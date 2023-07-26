@@ -125,15 +125,31 @@ let createOffer = async(MemberId) => {
     client.sendMessageToPeer({text :JSON.stringify({'type' : 'offer', 'offer' : offer})},MemberId)//we need to know who to send it to
 }
 
+// let createAnswer = async (MemberId, offer) => {
+//     await createPeerConnection(MemberId)
+//     console.log(offer)
+//     await peerConnection.setRemoteDescription(offer)
+
+//     let answer = await peerConnection.createAnswer()
+//     await peerConnection.setLocalDescription(answer)
+
+//     client.sendMessageToPeer({text:JSON.stringify({'type':'answer', 'answer':answer})}, MemberId)
+// }
+
 let createAnswer = async (MemberId, offer) => {
     await createPeerConnection(MemberId)
-
+    console.log(offer)
+    // Set the remote description received in the offer.
     await peerConnection.setRemoteDescription(offer)
 
+    // Create an answer to establish a connection with the remote peer.
     let answer = await peerConnection.createAnswer()
+
+    // Set the created answer as the local description for the peer connection.
     await peerConnection.setLocalDescription(answer)
 
-    client.sendMessageToPeer({text:JSON.stringify({'type':'answer', 'answer':answer})}, MemberId)
+    // Send the answer to the remote peer.
+    client.sendMessageToPeer({ text: JSON.stringify({ 'type': 'answer', 'answer': answer }) }, MemberId)
 }
 let addAnswer = async (answer) => {
     if(!peerConnection.currentRemoteDescription){
