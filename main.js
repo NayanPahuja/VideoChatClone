@@ -67,8 +67,8 @@ let handleMessageFromPeer = async (message, MemberId) => {
     }
     if(message.type === 'candidate'){
         if(peerConnection){
-            console.log('ERROR!')
-            await peerConnection.addIceCandidate(message.candidate)
+            console.log('FIX')
+            peerConnection.addIceCandidate(message.candidate)
             
         }
     
