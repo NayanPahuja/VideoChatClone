@@ -21,7 +21,7 @@ if(!roomID)  {
 const stunServers = {
     iceServers: [
         {
-            urls:['stun:stun1.l.google.com:19302', 'stun:stun2.l.google.com:19302']
+            urls:['stun:stun1.l.google.com:19302']
         }
     ]
 };
@@ -67,7 +67,7 @@ let handleMessageFromPeer = async (message, MemberId) => {
     }
     if(message.type === 'candidate'){
         if(peerConnection){
-            peerConnection.addIceCandidate(message.candidate)
+            await peerConnection.addIceCandidate(message.candidate)
         }
 
     }
