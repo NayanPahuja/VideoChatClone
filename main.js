@@ -19,13 +19,8 @@ if(!roomID)  {
 }
 
 const stunServers = {
-    iceServers: [
-        {
-            urls:['stun:stun1.l.google.com:19302']
-        }
-    ]
+    iceServers: [{ urls: "stun:stun1.l.google.com:19302" }],
 };
-
 
 let constraints = {
     video:{
@@ -72,8 +67,11 @@ let handleMessageFromPeer = async (message, MemberId) => {
     }
     if(message.type === 'candidate'){
         if(peerConnection){
+            console.log('ERROR!')
             await peerConnection.addIceCandidate(message.candidate)
+            
         }
+    
 
     }
 };
@@ -93,6 +91,9 @@ let createPeerConnection = async(MemberId) => {
         localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
         document.getElementById("user-1").srcObject = localStream;
     }
+    // if(!remoteStream){
+    //     remoteStream = 
+    // }
      // Add all tracks from the local stream to the peer connection.
      localStream.getTracks().forEach((track) => {
          peerConnection.addTrack(track, localStream);
@@ -116,7 +117,7 @@ let createPeerConnection = async(MemberId) => {
 
 let createOffer = async(MemberId) => {
    
-    await createPeerConnection(MemberId)
+    createPeerConnection(MemberId)
     // Create an offer to establish a connection with the remote peer.
     let offer = await peerConnection.createOffer();
     // Set the created offer as the local description for the peer connection.
