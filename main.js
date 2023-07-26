@@ -55,6 +55,11 @@ let handleUserLeft = (MemberId) => {
     document.getElementById('user-1').classList.remove('smallFrame')
 }
 
+let handleUserJoined = async (MemberId) => {
+    console.log('A new user joined the channel:', MemberId)
+    createOffer(MemberId)
+}
+
 let handleMessageFromPeer = async (message, MemberId) => {
 
     message = JSON.parse(message.text)
@@ -72,11 +77,6 @@ let handleMessageFromPeer = async (message, MemberId) => {
 
     }
 };
-
-let handleUserJoined = async (MemberId) => {
-    console.log('A new user joined the channel:', MemberId)
-    createOffer(MemberId)
-}
 
 
 let createPeerConnection = async(MemberId) => {
